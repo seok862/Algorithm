@@ -35,7 +35,6 @@ public class BAEKJOON_S1_2529_부등호 {
 		System.out.println(minAns);
 	}
 	
-	
 	public static void makeNum(int num, int arrIdx) {
 		if(arrIdx == choosed.length) {
 			String st = "";
