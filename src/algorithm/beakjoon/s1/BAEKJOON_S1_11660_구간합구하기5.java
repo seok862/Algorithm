@@ -5,6 +5,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+/**
+ * @author seok
+ * @since 2023.02.08
+ * @see https://www.acmicpc.net/problem/11660
+ * @performance 126196 kb	704 ms
+ * @category #백트래킹
+ * @note
+ */
+
 public class BAEKJOON_S1_11660_구간합구하기5 {
 	static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 	static StringBuilder output = new StringBuilder();
