@@ -1,27 +1,39 @@
+import java.util.Arrays;
+
 public class ex {
-	static String[] arr = { "a", "b", "c", "d" };
-	static String[] choosed = new String[3];
-	static boolean[] check = new boolean[4];
-	static StringBuilder output = new StringBuilder();
+
+	static char[] src = { 'a', 'b', 'c', 'd' };
 
 	public static void main(String[] args) {
-		make(0, 0);
-
-		System.out.println(output.toString());
+//		makePermutation(0, new char[3], new boolean[src.length]);
+		makeCombination(0, new char[3], 0);
 	}
 
-	public static void make(int lv, int num) {
+	static void makePermutation(int lv, char[] choosed, boolean[] visited) {
 		if (lv == choosed.length) {
-			for (String s : choosed) {
-				output.append(s).append(" ");
-			}
-			output.append("\n");
+			System.out.println(Arrays.toString(choosed));
 			return;
 		}
 
-		for (int i = num; i < arr.length; i++) {
-			choosed[lv] = arr[i];
-			make(lv + 1, i + 1);
+		for (int i = 0; i < src.length; i++) {
+			if (!visited[i]) {
+				visited[i] = true;
+				choosed[lv] = src[i];
+				makePermutation(lv + 1, choosed, visited);
+				visited[i] = false;
+			}
 		}
 	}
+	
+	 static void makeCombination(int nthChoice, char[] choosed, int startIdx) {
+	        if (nthChoice == choosed.length) {
+	            System.out.println(Arrays.toString(choosed));
+	            return;
+	        }
+	        for (int i = startIdx; i < src.length; i++) {
+	            choosed[nthChoice] = src[i];
+	            makeCombination(nthChoice + 1, choosed, i + 1);
+	        }
+	    }
+
 }
