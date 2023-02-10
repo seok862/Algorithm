@@ -4,7 +4,18 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+
+/**
+ * @author seok
+ * @since 2023.02.10
+ * @see https://www.acmicpc.net/problem/2667
+ * @performance 11928 kb	100 ms
+ * @category #dfs
+ * @note
+ */
 
 public class BAEKJOON_S1_2667_단지번호붙이기 {
 	
@@ -33,16 +44,18 @@ public class BAEKJOON_S1_2667_단지번호붙이기 {
 		for(int i=0; i<N; i++) {
 			for(int j=0; j<N; j++) {
 				if(!visited[i][j] && arr[i][j] == 1) {
-					System.out.println("["+i+"]["+j+"]");
 					tmp = 1;
 					ans++;
 					search(i,j);
-					System.out.println(tmp);
+					list.add(tmp);
 				}
 			}
 		}
 		System.out.println(ans);
-		System.out.println(tmp);
+		Collections.sort(list);
+		for(int i=0; i<list.size(); i++) {
+			System.out.println(list.get(i));
+		}
 	}
 	
 	static void search(int x, int y) {
@@ -50,7 +63,7 @@ public class BAEKJOON_S1_2667_단지번호붙이기 {
 		
 		for(int i=0; i<4; i++) {
 			int nx = x+deltaX[i];
-			int ny = y+deltaX[i];
+			int ny = y+deltaY[i];
 			
 			if(isIn(nx,ny) && !visited[nx][ny] && arr[nx][ny] == 1) {
 				tmp++;
