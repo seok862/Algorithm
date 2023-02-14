@@ -1,56 +1,62 @@
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.LinkedList;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class ex {
-    static BufferedReader br;
-    static StringTokenizer st;
-    static StringBuilder output;
-    static int plainLength;
-    static LinkedList<Integer> ll;
-    static int commandSize;
-
-    public static void main(String[] args) throws IOException {
-        for (int test_case = 1; test_case <= 10; test_case++) {
-            // 원본 암호문 길이, 원본 암호문, 명령어 개수, 명령어
-            // x y z -> x 위치 바로 다음에 y개 숫자 삽입, z : 숫자
-            br = new BufferedReader(new InputStreamReader(System.in));
-            plainLength = Integer.parseInt(br.readLine());
-            output = new StringBuilder();
-            output.append("#").append(test_case).append(" ");
-            
-            ll = new LinkedList<>();
-            st = new StringTokenizer(br.readLine());
-            for (int i = 0; i < plainLength; i++) {
-                ll.add(Integer.parseInt(st.nextToken()));
-            }
-
-            commandSize = Integer.parseInt(br.readLine());
-             
-            st = new StringTokenizer(br.readLine());
-            int place = 0;
-            int size = 0;
-            for (int i = 0; i < commandSize;) {
-                if (st.nextToken().equals("I")) {
-                    place = Integer.parseInt(st.nextToken());
-                    size = Integer.parseInt(st.nextToken());
-                    for (int insertSize = 0; insertSize < size; insertSize++) {
-                        ll.add(place, Integer.parseInt(st.nextToken()));
-                        place++;
-                    }
-                    i++;
-                }
-            }
-            
-            for (int idx = 0; idx < 10; idx++) {
-                output.append(ll.get(idx));
-                if (idx != 9)
-                    output.append(" ");
-            }
-            output.append("\n");
-        }
-        System.out.println(output);
-    }
+public class ex{
+	
+	static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+	static StringBuilder output = new StringBuilder();
+	static StringTokenizer tokens;
+	static char[] arr= {'a','b','c','d','e'};
+	public static void main(String[] args) {
+//		makePermutation(0,new char[3], new boolean[arr.length]);
+		
+//		makeCombination(0, new char[3], 0);
+		
+		powerSet(0, new boolean[arr.length]);
+	}
+	
+	static void makePermutation(int lv, char[] choosed, boolean[] check ) {
+		if(lv == choosed.length) {
+			System.out.println(Arrays.toString(choosed));
+			return;
+		}
+		
+		for(int i=0; i<arr.length; i++) {
+			if(!check[i]) {
+				choosed[lv] = arr[i];
+				check[i] = true;
+				makePermutation(lv+1, choosed, check);
+				check[i] = false;
+			}
+		}
+	}
+	
+	static void makeCombination(int lv, char[] choosed, int startIdx) {
+		if(lv == choosed.length) {
+			System.out.println(Arrays.toString(choosed));
+			return;
+		}
+		
+		for(int i=startIdx; i<arr.length; i++) {
+			choosed[lv] = arr[i];
+			makeCombination(lv+1,choosed,i+1);
+		}
+	}
+	
+	static void powerSet(int lv, boolean[] check) {
+		if(lv == check.length) {
+			for(int i=0; i<check.length; i++) {
+				if(check[i]) System.out.print(arr[i]+" ");
+			}
+			System.out.println();
+			return;
+		}
+		
+		check[lv] = true;
+		powerSet(lv+1, check);
+		check[lv] = false;
+		powerSet(lv+1, check);
+	}
 }
