@@ -33,12 +33,10 @@ public class SWEA_D3_5215_햄버거다이어트 {
 			L = Integer.parseInt(tokens.nextToken());
 			
 			arr1 = new int[N];
-			arr2 = new int[L];
 			max = Integer.MIN_VALUE;
 			
 			for(int i=0; i<N; i++) {
 				tokens = new StringTokenizer(input.readLine());
-				
 				arr1[i] = Integer.parseInt(tokens.nextToken());
 				arr2[i] = Integer.parseInt(tokens.nextToken());
 			}
