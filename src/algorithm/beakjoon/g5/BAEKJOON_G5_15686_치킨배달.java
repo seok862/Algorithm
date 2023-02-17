@@ -16,7 +16,6 @@ import java.util.StringTokenizer;
  * @note
  */
 
-
 public class BAEKJOON_G5_15686_치킨배달 {
 	
 	static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
