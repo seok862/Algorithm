@@ -6,6 +6,15 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
+/**
+ * @author seok
+ * @since 2023.02.20
+ * @see https://www.acmicpc.net/problem/1074
+ * @performance 11928 kb	88 ms
+ * @category # 분할정복
+ * @note
+ */
+
 public class BAEKJOON_s1_1074_Z {
 
 	static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
@@ -30,7 +39,7 @@ public class BAEKJOON_s1_1074_Z {
 	}
 
 	public static void make(int r, int c, int size) {
-		if (size==1) {
+		if (r==0 && c==0) {
 			output.append(num);
 			return;
 		}
@@ -42,13 +51,13 @@ public class BAEKJOON_s1_1074_Z {
 			make(r, c, half);
 		} else if (r < half && c >= half) {
 			num = num +  half * half;
-			make(r, c + half, half);
+			make(r, c - half, half);
 		} else if (r >= half && c < half) {
 			num = num + half * half * 2;
-			make(r + half, c, half);
+			make(r - half, c, half);
 		} else {
 			num = num + half * half * 3;
-			make(r + half, c + half, half);
+			make(r - half, c - half, half);
 		}
 	}
 }
