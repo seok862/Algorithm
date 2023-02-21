@@ -3,7 +3,18 @@ package algorithm.beakjoon.s1;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.StringTokenizer;
+
+/**
+ * @author seok
+ * @since 2023.02.21
+ * @see https://www.acmicpc.net/problem/1992
+ * @performance 11700 kb	80 ms
+ * @category # 분할 정복
+ * @note
+ */
+
 
 public class BAEKJOON_S1_1992_쿼드트리 {
 
@@ -11,49 +22,51 @@ public class BAEKJOON_S1_1992_쿼드트리 {
 	static StringBuilder output = new StringBuilder();
 	static StringTokenizer tokens;
 	static int[][] map;
-	static int size;
 
 	public static void main(String[] args) throws IOException {
-		size = Integer.parseInt(input.readLine());
-		map = new int[size+1][size+1];
+		int N = Integer.parseInt(input.readLine());
+		map = new int[N][N];
 
-		for (int i = 0; i < size; i++) {
+		for (int i = 0; i < N; i++) {
 			String st = input.readLine();
-			for (int j = 0; j < size; j++) {
-				map[i][j] = Integer.parseInt(st.substring(j, j + 1));
+			for (int j = 0; j < N; j++) {
+				map[i][j] = st.charAt(j) - '0';
 			}
 		}
+		make(0, 0, N);
 
-		make(size, size, size);
-		
 		System.out.println(output.toString());
 	}
 
 	public static void make(int r, int c, int size) {
-		int n = map[r][c];
-		boolean check = true;
-		for(int i=r; i<r+size; i++) {
-			for(int j=c; j<c+size; j++){
-				if(n!=map[r][c]) check = false;;
+
+		if (check(r,c,size)) {
+			output.append(map[r][c]);
+			return;
+		}
+		
+		output.append('(');
+		int half = size / 2;
+
+		make(r, c, half);
+		make(r, c + half, half);
+		make(r + half, c, half);
+		make(r + half, c + half, half);
+
+		output.append(')');
+
+	}
+	
+	public static boolean check(int r, int c, int size) {
+		int num = map[r][c];
+		
+		for (int i = r; i < r + size; i++) {
+			for (int j = c; j < c + size; j++) {
+				if (num != map[i][j]) {
+					return false;
+				}
 			}
 		}
-
-		if (check) {
-			output.append(n);
-		} else {
-			output.append("(");
-			int half = size / 2;
-
-			if (r < half && c < half) {
-				make(r, c, half);
-			} else if (r < half && c >= half) {
-				make(r, c - half, half);
-			} else if (r >= half && c < half) {
-				make(r - half, c, half);
-			} else {
-				make(r - half, c - half, half);
-			}
-		}
-
+		return true;
 	}
 }
