@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-/**
+/*
  * @author seok
  * @since 2023.02.21
  * @see https://www.acmicpc.net/problem/1012
