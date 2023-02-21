@@ -18,10 +18,13 @@ public class BAEKJOON_G5_6987_월드컵 {
 	static int N,M,cnt;
 	static int W,D,L,drawCount;
 	static country[] arr;
+	static int[][] map;
+	static boolean check;
 	public static void main(String[] args) throws IOException {
 		for(int t=0; t<4; t++) {
 			tokens = new StringTokenizer(input.readLine());
 			arr = new country[6];
+			
 			drawCount = 0;
 			for(int i=0; i<6; i++) {
 				int w = Integer.parseInt(tokens.nextToken());
@@ -30,37 +33,68 @@ public class BAEKJOON_G5_6987_월드컵 {
 				
 				arr[i] = new country(w,d,l);
 			}
-			boolean check = true;
 			
-			for(int i=0; i<arr.length-1; i++) {
-				for(int j=i+1; j<arr.length; j++) {
-					if(arr[i].win != 0 && arr[j].lose != 0) {
-						arr[i].win--;
-						arr[j].lose--;
-					}else if(arr[i].lose != 0 && arr[j].win != 0) {
-						arr[i].lose--;
-						arr[j].win--;
-					}
-				}
-				
-				if(arr[i].draw != 0) {
-					drawCount++;
-				}
-				
-				System.out.println("i:"+i+":"+arr[i].win+":"+arr[i].lose+" : "+drawCount);
-				if(arr[i].win != 0 || arr[i].lose != 0 || drawCount%2 != 1) {
-					check = false;
-					break;
+			map = new int[15][2];
+			
+			int idx = 0;
+			for(int i=0; i<6; i++) {
+				for(int j=i+1; j<6; j++) {
+					map[idx][0] = i;
+					map[idx][1] = j;
+					idx++;
 				}
 			}
 			
+			check = true;
 			
-			if(check) output.append("1").append(" ");
-			else output.append("0").append(" ");
+			make(0);
+			
+			if(check) {
+				output.append("1").append(" ");
+			}else {
+				output.append("0").append(" ");
+			}
+			
 		}
-//		System.out.println(output.toString());
+		System.out.println(output);
 	}
-	
+	public static void make(int lv) {
+		if(arr[map[lv][0]].win + arr[map[lv][0]].draw + arr[map[lv][0]].lose != 5) {
+			check = false;
+			return;
+		}
+		
+		if(lv==15) {
+			check = true;
+			return;
+		}
+		
+		int t1 = map[lv][0];
+		int t2 = map[lv][1];
+		
+		if(arr[t1].win > 0 && arr[t2].lose > 0) {
+			arr[t1].win--;
+			arr[t2].lose--;
+			make(lv+1);
+			arr[t1].win++;
+			arr[t2].lose++;
+		}
+		if(arr[t1].lose > 0 && arr[t2].win > 0) {
+			arr[t1].lose--;
+			arr[t2].win--;
+			make(lv+1);
+			arr[t1].lose++;
+			arr[t2].win++;
+		}
+		if(arr[t1].draw > 0 && arr[t2].draw > 0) {
+			arr[t1].draw--;
+			arr[t2].draw--;
+			make(lv+1);
+			arr[t1].draw++;
+			arr[t2].draw++;
+		}
+		
+	}
 	public static class country{
 		int win;
 		int draw;
