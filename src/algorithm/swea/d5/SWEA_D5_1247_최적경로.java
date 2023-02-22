@@ -31,7 +31,13 @@ public class SWEA_D5_1247_최적경로 {
 				
 				point[i] = new Point(x,y);
 			}
+			
+			make(0, new Point[point.length], new boolean[N]);
 		}
+	}
+	
+	public static void make(int lv, Point[] choosed, boolean[] visited) {
+		
 	}
 	
 	public static class Point{
