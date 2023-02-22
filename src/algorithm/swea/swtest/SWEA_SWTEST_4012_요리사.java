@@ -1,4 +1,4 @@
-package algorithm.swea;
+package algorithm.swea.swtest;
 
 import java.io.BufferedReader;
 import java.io.IOException;
