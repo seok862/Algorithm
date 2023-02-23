@@ -14,7 +14,7 @@ import java.util.StringTokenizer;
  * @note
  */
 
-public class BAEKJOON_G4_1987_알파벳 {
+public class BAEKJOON_g4_1987_알파벳 {
 	static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 	static StringBuilder output = new StringBuilder();
 	static StringTokenizer tokens;
@@ -47,14 +47,17 @@ public class BAEKJOON_G4_1987_알파벳 {
 			ans = Math.max(ans, lv);
 			return;
 		}
+
 		for (int i = 0; i < 4; i++) {
 			int nx = x + deltas[i][0];
 			int ny = y + deltas[i][1];
 
 			if (isIn(nx, ny)) {
+
 				check[arr[x][y] - 'A'] = true;
 				count(nx, ny, lv + 1);
 				check[arr[x][y] - 'A'] = false;
+
 			}
 		}
 	}
