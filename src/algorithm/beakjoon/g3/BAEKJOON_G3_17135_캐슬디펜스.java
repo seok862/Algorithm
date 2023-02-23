@@ -13,5 +13,4 @@ package algorithm.beakjoon.g3;
  * @category #
  */
 public class BAEKJOON_G3_17135_캐슬디펜스 {
-
 }
