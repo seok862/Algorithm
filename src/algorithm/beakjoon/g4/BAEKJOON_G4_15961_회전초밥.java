@@ -1,21 +1,20 @@
-package algorithm.beakjoon.s1;
+package algorithm.beakjoon.g4;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 /**
  * @author seok
  * @since 2023.02.23
- * @see https://www.acmicpc.net/problem/2531
- * @performance 16500 kb	140 ms
+ * @see https://www.acmicpc.net/problem/15961
+ * @performance 180380 kb	544 ms	
  * @category # 슬라이딩 윈도우
  * @note
  */
 
-public class BAEKJOON_S1_2531_회전초밥 {
+public class BAEKJOON_G4_15961_회전초밥 {
 
 	static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 	static StringBuilder output = new StringBuilder();
@@ -33,7 +32,7 @@ public class BAEKJOON_S1_2531_회전초밥 {
 		C = Integer.parseInt(tokens.nextToken());
 
 		arr = new int[N + K];
-		visited = new int[3001];
+		visited = new int[3000001];
 		for (int i = 0; i < N; i++) {
 			arr[i] = Integer.parseInt(input.readLine());
 		}
