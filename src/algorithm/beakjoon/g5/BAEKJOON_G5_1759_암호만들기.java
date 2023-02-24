@@ -6,16 +6,14 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-
 /**
  * @author seok
- * @since 2023.02.07
+ * @since 2023.02.24
  * @see https://www.acmicpc.net/problem/1759
- * @performance 12,020 kb	80 ms
+ * @performance 12,020 kb 80 ms
  * @category #백트래킹
  * @note
  */
-
 
 public class BAEKJOON_G5_1759_암호만들기 {
 	static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
@@ -49,7 +47,7 @@ public class BAEKJOON_G5_1759_암호만들기 {
 
 	static void dfs(int num, int l) {
 		if (l == L) {
-			if(check()) {
+			if (check()) {
 				for (int i = 0; i < choosed.length; i++) {
 					output.append(choosed[i]);
 				}
@@ -63,22 +61,22 @@ public class BAEKJOON_G5_1759_암호만들기 {
 			dfs(i + 1, l + 1);
 		}
 	}
-	
-	 public static boolean check() {
-	        int mo = 0;
-	        int ja = 0;
 
-	        for (char x : choosed) {
-	            if (x == 'a' || x == 'e' || x == 'i' || x == 'o' || x == 'u') {
-	                mo++;
-	            } else {
-	                ja++;
-	            }
-	        }
+	public static boolean check() {
+		int mo = 0;
+		int ja = 0;
 
-	        if (mo >= 1 && ja >= 2) {
-	            return true;
-	        }
-	        return false;
-	    }
+		for (char x : choosed) {
+			if (x == 'a' || x == 'e' || x == 'i' || x == 'o' || x == 'u') {
+				mo++;
+			} else {
+				ja++;
+			}
+		}
+
+		if (mo >= 1 && ja >= 2) {
+			return true;
+		}
+		return false;
+	}
 }
