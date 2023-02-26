@@ -1,9 +1,9 @@
 package algorithm.beakjoon.g5;
 /**
  * @author seok
- * @since 2023.02.24
+ * @since 2023.02.26
  * @see https://www.acmicpc.net/problem/18428
- * @performance 22756 kb	232 ms
+ * @performance 14816 kb	120 ms
  * @category # dfs 
  * @note
  */
@@ -21,65 +21,74 @@ public class BAEKJOON_G5_18428_감시피하기 {
 	static StringBuilder output = new StringBuilder();
 	static StringTokenizer tokens;
 	static char[][] map;
-	static String ans;
 	static int N;
-	static Point[] pArr;
+	static int[][] deltas = { { 0, 1 }, { 1, 0 }, { -1, 0 }, { 0, -1 } };
+
 	public static void main(String[] args) throws IOException {
 		N = Integer.parseInt(input.readLine());
 		map = new char[N][N];
-		
-		for(int i=0; i<N; i++) {
+
+		for (int i = 0; i < N; i++) {
 			tokens = new StringTokenizer(input.readLine());
-			for(int j=0; j<N; j++) {
+			for (int j = 0; j < N; j++) {
 				map[i][j] = tokens.nextToken().charAt(0);
 			}
 		}
-		ans = "YES";
-		
+
+		makeWall(0);
+
+		System.out.println("NO");
 	}
-	
-	public static void dfs(int lv) {
-		if(lv == 3) {
-			pArr = new Point[3];
-			int n = 0;
-			for(int i=0; i<N; i++) {
-				for(int j=0; j<N; j++) {
-					if(map[i][j] == 'T') {
-						pArr[n++] = new Point(i,j);
+
+	public static void makeWall(int lv) {
+		if (lv == 3) {
+			boolean check = true;
+			for (int i = 0; i < N; i++) {
+				for (int j = 0; j < N; j++) {
+					if (map[i][j] == 'T') {
+						if (!checkStudent(i, j)) check = false;
 					}
 				}
 			}
-			
-			for(int i=0; i<pArr.length; i++) {
-				dfs2(pArr[i], 0);
+			if(check) {
+				System.out.println("YES");
+				System.exit(0);
 			}
-			
 			return;
 		}
-		
-		for(int i=0; i<N; i++) {
-			for(int j=0; j<N; j++) {
-				if(map[i][j] == 'X') {
+
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < N; j++) {
+				if (map[i][j] == 'X') {
 					map[i][j] = 'O';
-					dfs(lv+1);
+					makeWall(lv + 1);
 					map[i][j] = 'X';
 				}
 			}
 		}
 	}
-	
-	public static void dfs2(Point p, int lv) {
-		if(lv == 3) {
-			ans = "YES";
+
+	public static boolean checkStudent(int x, int y) {
+		for (int i = 0; i < 4; i++) {
+			int nx = x;
+			int ny = y;
+			while (true) {
+				nx += deltas[i][0];
+				ny += deltas[i][1];
+
+				if (!isIn(nx, ny) || map[nx][ny] == 'O')
+					break;
+
+				if (map[nx][ny] == 'S')
+					return false;
+
+			}
 		}
+
+		return true;
 	}
-	
-	public static class Point{
-		int x;
-		int y;
-		public Point(int x, int y) {
-			this.x = x;
-			this.y = y;
-		}
+
+	public static boolean isIn(int x, int y) {
+		return 0 <= x && x < N && 0 <= y && y < N;
 	}
 }
