@@ -84,6 +84,8 @@ public class BAEKJOON_G4_17471_게리맨더링 {
 		return dfs(0,0);
 	}
 	
+	// 방문체크 안할수가 없음 해야함
+	// 방문한 레벨이 visited의 true크기와 같으면 끝까지 연결되었다고 판단
 	public static boolean dfs(int lv, int cnt) {
 		if(lv == visited.length) {
 			int count = 0;
