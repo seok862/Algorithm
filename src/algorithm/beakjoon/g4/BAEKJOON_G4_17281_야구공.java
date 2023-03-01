@@ -7,22 +7,20 @@ import java.util.StringTokenizer;
 
 /**
  * @author seok
- * @since 
- * @see 
- * @performance 
- * @category 
- * @note
+ * @since
+ * @see
+ * @performance
+ * @category @note
  */
 public class BAEKJOON_G4_17281_야구공 {
-	
+
 	static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 	static StringBuilder output = new StringBuilder();
 	static StringTokenizer tokens;
 	static int N;
-	
+
 	public static void main(String[] args) throws IOException {
 		N = Integer.parseInt(input.readLine());
 		
-		
-	}
-}
+	}	
+}	
