@@ -22,5 +22,8 @@ public class BAEKJOON_G4_17281_야구공 {
 	public static void main(String[] args) throws IOException {
 		N = Integer.parseInt(input.readLine());
 		
+		for(int e= 0; e<N; e++) {
+			
+		}
 	}	
 }	
