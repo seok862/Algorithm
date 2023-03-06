@@ -3,8 +3,18 @@ package algorithm.beakjoon.g4;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.math.MathContext;
 import java.util.Arrays;
 import java.util.StringTokenizer;
+
+/**
+ * @author seok
+ * @since 2023.03.06
+ * @see https://www.acmicpc.net/problem/1647
+ * @performance 331716 kb	2236 ms
+ * @category # 크루스칼
+ * @note
+ */
 
 public class BAEKJOON_G4_1647_도시분할계획 {
 
@@ -36,17 +46,18 @@ public class BAEKJOON_G4_1647_도시분할계획 {
 		}
 		
 		Arrays.sort(EdgeArr);
-		
+		int max = 0;
+		int maxidx = 0;
 		for(int i=0; i<EdgeArr.length; i++) {
 			Edge e = EdgeArr[i];
 			
 			if(union(e.a, e.b)) {
 				sum += e.c;
+				max = e.c;
 			}
 		}
-		System.out.println(Arrays.toString(repres));
 		
-		System.out.println(sum);
+		System.out.println(sum-max);
 	}
 	
 	public static void makeSet() {
