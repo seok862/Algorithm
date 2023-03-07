@@ -5,6 +5,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+/*
+ * @author seok
+ * @since 2023.03.08
+ * @see https://www.acmicpc.net/problem/1541
+ * @performance 11544 kb	76 ms
+ * @category # 수학
+ * @note
+ */
+
 public class BAEKJOON_S2_1541_잃어버린괄호 {
 
 	static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
