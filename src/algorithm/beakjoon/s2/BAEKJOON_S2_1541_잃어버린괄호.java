@@ -22,6 +22,7 @@ public class BAEKJOON_S2_1541_잃어버린괄호 {
 	public static void main(String[] args) throws IOException {
 		tokens = new StringTokenizer(input.readLine(),"-");
 		sum = Integer.MAX_VALUE;
+		
 		while(tokens.hasMoreTokens()) {
 			int tmp = 0;
 			
