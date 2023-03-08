@@ -25,7 +25,6 @@ public class BAEKJOON_S4_2003_수들의합2 {
 	static long M;
 	public static void main(String[] args) throws IOException {
 		tokens = new StringTokenizer(input.readLine());
-		
 		N = Integer.parseInt(tokens.nextToken());
 		M = Integer.parseInt(tokens.nextToken());
 		
