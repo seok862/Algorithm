@@ -15,6 +15,7 @@ import java.util.StringTokenizer;
  * @note
  */
 
+
 public class BAEKJOON_S2_2210_숫자판점프 {
 
 	static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
