@@ -14,7 +14,7 @@ import java.util.StringTokenizer;
  * @note
  */
 
-public class BAEKJOON_S3_15652_N과M4 {
+public class BAEKJOON_S3_15652_N과M_4 {
 	
 	static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 	static StringBuilder output = new StringBuilder();
