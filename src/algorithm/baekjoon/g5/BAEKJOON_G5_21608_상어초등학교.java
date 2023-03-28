@@ -3,6 +3,8 @@ package algorithm.baekjoon.g5;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
 
 public class BAEKJOON_G5_21608_상어초등학교 {
@@ -12,7 +14,7 @@ public class BAEKJOON_G5_21608_상어초등학교 {
 	static StringBuilder out = new StringBuilder();
 	static StringTokenizer tokens;
 	static int N;
-	static int[][] map;
+	static List<int[]> map;
 	static int[][] ans;
 	static int cnt;
 	static int[][] deltas = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 } };
@@ -20,18 +22,20 @@ public class BAEKJOON_G5_21608_상어초등학교 {
 
 	public static void main(String[] args) throws IOException {
 		N = Integer.parseInt(input.readLine());
-		map = new int[N * N][5];
+		map = new ArrayList<>();
 		ans = new int[N][N];
 		cnt = 0;
 		for (int r = 0; r < N * N; r++) {
 			tokens = new StringTokenizer(input.readLine());
+			int[] arr = new int[5];
 			for (int c = 0; c < 5; c++) {
-				map[r][c] = Integer.parseInt(tokens.nextToken());
+				arr[c] = Integer.parseInt(tokens.nextToken());
 			}
+			map.add(arr);
 		}
 
 		for (int r = 0; r < N * N; r++) {
-			p = new Point(0, 0, 0, 0);
+			p = new Point(0, 0, -1, -1);
 			for (int i = 0; i < N; i++) {
 				for (int j = 0; j < N; j++) {
 					if (ans[i][j] == 0) {
@@ -39,21 +43,21 @@ public class BAEKJOON_G5_21608_상어초등학교 {
 					}
 				}
 			}
-			ans[p.r][p.c] = map[r][0];
+			ans[p.r][p.c] = map.get(r)[0];
 		}
 
-		for(int r=0; r<N; r++) {
-			for(int c=0; c<N; c++) {
-				System.out.print(ans[r][c]+ " ");
-			}
-			System.out.println();
-		}
-		
 		for (int i = 0; i < N; i++) {
 			for (int j = 0; j < N; j++) {
 				count(i, j);
 			}
 		}
+
+//		for (int i = 0; i < N; i++) {
+//			for (int j = 0; j < N; j++) {
+//				System.out.print(ans[i][j] + " ");
+//			}
+//			System.out.println();
+//		}
 
 		System.out.println(cnt);
 	}
@@ -66,9 +70,9 @@ public class BAEKJOON_G5_21608_상어초등학교 {
 
 			if (isIn(nr, nc)) {
 				for (int j = 1; j <= N * N; j++) {
-					if (map[j-1][0] == ans[r][c]) {
+					if (map.get(j - 1)[0] == ans[r][c]) {
 						for (int col = 1; col < 5; col++) {
-							if (ans[nr][nc] == map[j-1][col]) {
+							if (ans[nr][nc] == map.get(j - 1)[col]) {
 								count++;
 							}
 						}
@@ -110,15 +114,16 @@ public class BAEKJOON_G5_21608_상어초등학교 {
 				}
 
 				for (int col = 1; col < 5; col++) {
-					if (ans[nr][nc] == map[idx][col]) {
+					if (ans[nr][nc] == map.get(idx)[col]) {
 						cnt++;
 					}
 				}
+
 			}
 		}
-
 		if (cnt > p.cnt) {
 			p.cnt = cnt;
+			p.empty = empty;
 			p.r = r;
 			p.c = c;
 		} else if (cnt == p.cnt && empty > p.empty) {
@@ -126,7 +131,6 @@ public class BAEKJOON_G5_21608_상어초등학교 {
 			p.r = r;
 			p.c = c;
 		}
-
 	}
 
 	static class Point {
