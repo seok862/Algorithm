@@ -11,7 +11,7 @@ public class BAEKJOON_S2_11051_이항계수2 {
 	static StringTokenizer tokens;
 	static int N, M;
 	static int[][] map;
-
+ 
 	public static void main(String[] args) throws IOException {
 		tokens = new StringTokenizer(input.readLine());
 		N = Integer.parseInt(tokens.nextToken());
