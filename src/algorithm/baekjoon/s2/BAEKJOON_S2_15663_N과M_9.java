@@ -4,9 +4,19 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.StringTokenizer;
+
+/**
+ * @author seok
+ * @since 2023.03.30
+ * @see https://www.acmicpc.net/problem/15663
+ * @performance 36964 kb	544 ms
+ * @category # 조합
+ * @note
+ */
 
 public class BAEKJOON_S2_15663_N과M_9 {
 	
@@ -15,6 +25,7 @@ public class BAEKJOON_S2_15663_N과M_9 {
 	static StringTokenizer tokens;
 	static int N,M;
 	static Integer[] arr;
+	static LinkedHashSet<String> set;
 	public static void main(String[] args) throws IOException {
 		
 		tokens = new StringTokenizer(input.readLine());
@@ -30,21 +41,25 @@ public class BAEKJOON_S2_15663_N과M_9 {
 			arr[i] = Integer.parseInt(tokens.nextToken());
 		}
 		
-		Set<Integer> set = new HashSet<Integer>(Arrays.asList(arr));
+		Arrays.sort(arr);
 		
-		arr = set.toArray(new Integer[0]);
+		set = new LinkedHashSet<String>();
 		
 		make(0, new int[M], new boolean[arr.length]);
 		
-		System.out.println(output);
+		Iterator iter = set.iterator();
+		while(iter.hasNext()) {
+			System.out.println(iter.next());
+		}
 	}
 	
 	public static void make(int lv, int[] choosed, boolean[] visited) {
 		if (lv == choosed.length) {
+			StringBuilder st = new StringBuilder();
 			for(int i=0; i<choosed.length; i++) {
-				output.append(choosed[i]).append(" ");
+				st.append(choosed[i]).append(" ");
 			}
-			output.append("\n");
+			set.add(st.toString());
 			return;
         }
         for (int i = 0; i < arr.length; i++) {
