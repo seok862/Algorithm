@@ -34,8 +34,6 @@ public class BAEKJOON_G4_3055_탈출 {
 		R = Integer.parseInt(tokens.nextToken());
 		C = Integer.parseInt(tokens.nextToken());
 
-		// 물 = *, 돌 = X, 굴 = D, 고슴도치 = S
-
 		map = new char[R][C];
 		for (int r = 0; r < R; r++) {
 			String tmp = input.readLine();
@@ -62,10 +60,6 @@ public class BAEKJOON_G4_3055_탈출 {
 	}
 
 	public static void bfs() {
-		// 한번 while 돌 때 물채우고 이동
-		// 물 차면 map *로 갱신
-		// .만나면 그 자리를 출발지점으로 선택하고 lv+1
-		// 물채우기
 		while(!q.isEmpty()) {
 			int size = water.size();
 			
