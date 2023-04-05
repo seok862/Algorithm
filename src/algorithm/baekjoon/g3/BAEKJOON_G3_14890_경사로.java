@@ -33,9 +33,7 @@ public class BAEKJOON_G3_14890_경사로 {
 
 		// 1. 열 체크
 		int row = checkRow(X);
-		System.out.println(row);
 		int col = checkCol(X);
-		System.out.println(col);
 		System.out.println((row + col));
 	}
 
@@ -53,6 +51,7 @@ public class BAEKJOON_G3_14890_경사로 {
 							check = false;
 							break;
 						}
+						
 						if ((c - len + 1) < 0) {
 							check = false;
 							break;
@@ -81,16 +80,18 @@ public class BAEKJOON_G3_14890_경사로 {
 							break;
 						}
 
-						for (int i = c + 1; i < c + len; i++) {
-							if (map[r][i] != map[r][i + 1] || tmp[r][i]) {
-								check = false;
-								break outer;
-							}
-							tmp[r][i] = true;
-						}
-
-						if (check)
+						if(len == 1) {
 							tmp[r][c + len] = true;
+						}else {
+							for (int i = c + 1; i < c + len; i++) {
+								if (map[r][i] != map[r][i + 1] || tmp[r][i]) {
+									check = false;
+									break outer;
+								}
+								tmp[r][i] = true;
+							}
+						}
+						
 					}
 				}
 			}
@@ -149,16 +150,20 @@ public class BAEKJOON_G3_14890_경사로 {
 							check = false;
 							break;
 						}
+						
+						int standard = map[r+1][c];
 
-						for (int i = r + 1; i < r + len; i++) {
-							if (map[i][c] != map[i + 1][c] || tmp[i][c]) {
-								check = false;
-								break outer;
+						if(len == 1) {
+							tmp[r+1][c] = true;
+						}else {
+							for (int i = r; i < r + len; i++) {
+								if (standard != map[i][c] || tmp[i][c]) {
+									check = false;
+									break outer;
+								}
+								tmp[i][c] = true;
 							}
-							tmp[i][c] = true;
 						}
-						if (check)
-							tmp[r + len][c] = true;
 					}
 
 				}
