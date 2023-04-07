@@ -3,6 +3,7 @@ package algorithm.baekjoon.g1;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 public class BAEKJOON_G1_3678_카탄의개척자 {
@@ -13,7 +14,9 @@ public class BAEKJOON_G1_3678_카탄의개척자 {
 	static int N;
 	static int[] arr;
 	static int[][] map;
-	static int[][] deltas = {{2,0},{1,1},{0,2},{-1,1},{-2,0},{-1,-1},{0,-2},{1,-1}};
+	static int num, nowx, nowy;
+	static PriorityQueue<Integer> pq = new PriorityQueue<>();
+	static Delta[] deltas = {new Delta(0,1,1),new Delta(1,1,0),new Delta(1,0,1),new Delta(0,-1,1),new Delta(-1,-1,1),new Delta(-1,0,1)};
 	public static void main(String[] args) throws IOException {
 		N = Integer.parseInt(input.readLine());
 		
@@ -25,17 +28,30 @@ public class BAEKJOON_G1_3678_카탄의개척자 {
 			arr[t] = Integer.parseInt(tokens.nextToken());
 		}
 		
-		map = new int[100][100];
+		map = new int[200][200];
 
-		map[50][50] = 1;
+		map[100][100] = 1;
 		
-		int nowx = 50;
-		int nowy = 50;
-		int index = 1;
-		int number = 1;
-
-		while(index <= 10000) {
-			
+		num = 1;
+		nowx = 100;
+		nowy = 100;
+		
+		makeMap();
+		
+	}
+	
+	public static void makeMap() {
+		
+	}
+	
+	public static class Delta{
+		int r;
+		int c;
+		int lv;
+		public Delta(int r, int c, int lv) {
+			this.r = r;
+			this.c = c;
+			this.lv = lv;
 		}
 	}
 }
