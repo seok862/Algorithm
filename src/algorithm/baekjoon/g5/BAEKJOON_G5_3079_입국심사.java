@@ -3,6 +3,7 @@ package algorithm.baekjoon.g5;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class BAEKJOON_G5_3079_입국심사 {
@@ -21,10 +22,33 @@ public class BAEKJOON_G5_3079_입국심사 {
 	
 		
 		arr = new int[N];
+		int min = Integer.MAX_VALUE;
+		
 		for(int t=0; t<N; t++) {
 			arr[t] = Integer.parseInt(input.readLine());
+			min = Math.min(min, arr[t]);
+		}
+		int pre = min*N;
+		int point = min*N/2;
+		int ans = 0;
+		while(true) {
+			ans = 0;
+			
+			for(int i=0; i<N; i++) {
+				ans += point/arr[i];
+			}
+			
+			
+			if(ans == M) break;
+			
+			pre = point;
+			if(ans > M) {
+				point = point/2;
+			}else {
+				point = (pre+point)/2;
+			}
 		}
 		
-		
+		System.out.println(ans);
 	}
 }
