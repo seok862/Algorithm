@@ -43,7 +43,7 @@ public class BAEKJOON_G5_3079_입국심사 {
 			
 			pre = point;
 			if(ans > M) {
-				point = point/2;
+				point = pre/2;
 			}else {
 				point = (pre+point)/2;
 			}
