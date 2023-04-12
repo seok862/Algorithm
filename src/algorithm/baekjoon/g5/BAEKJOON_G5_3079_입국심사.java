@@ -12,7 +12,7 @@ public class BAEKJOON_G5_3079_입국심사 {
 	static StringBuilder output = new StringBuilder();
 	static StringTokenizer tokens;
 	static int N, M;
-	static int[] arr;
+	static long[] arr;
 	public static void main(String[] args) throws IOException {
 		tokens = new StringTokenizer(input.readLine());
 		// N 입국 심사대 수
@@ -21,34 +21,33 @@ public class BAEKJOON_G5_3079_입국심사 {
 		M = Integer.parseInt(tokens.nextToken());
 	
 		
-		arr = new int[N];
-		int min = Integer.MAX_VALUE;
+		arr = new long[N];
+		long max = Long.MIN_VALUE;
 		
 		for(int t=0; t<N; t++) {
 			arr[t] = Integer.parseInt(input.readLine());
-			min = Math.min(min, arr[t]);
-		}
-		int pre = min*N;
-		int point = min*N/2;
-		int ans = 0;
-		while(true) {
-			ans = 0;
-			
-			for(int i=0; i<N; i++) {
-				ans += point/arr[i];
-			}
-			
-			
-			if(ans == M) break;
-			
-			pre = point;
-			if(ans > M) {
-				point = pre/2;
-			}else {
-				point = (pre+point)/2;
-			}
+			max = Math.max(max, arr[t]);
 		}
 		
-		System.out.println(ans);
+		long right = max*M;
+		long left = 0;
+
+		while(left <= right) {
+			long mid = (right+left)/2;
+			long cnt = 0;
+			
+			for(int i=0; i<arr.length; i++) {
+				cnt += mid/arr[i];
+			}
+			
+			if(cnt < M) {
+				left = mid+1;
+			}else {
+				right = mid-1;
+			}
+				
+		}
+		
+		System.out.println(left);
 	}
 }
