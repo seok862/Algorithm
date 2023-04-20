@@ -9,6 +9,14 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
+/**
+* @author seok
+* @since 2023.04.20
+* @see https://www.acmicpc.net/problem/1005
+* @performance 	244232 kb	736 ms
+* @category # 위상정렬
+* @note
+*/
 public class BAEKJOON_G3_1005_ACMCraft {
 
 	static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
