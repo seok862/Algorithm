@@ -31,7 +31,6 @@ public class BAEKJOON_G4_16434_드래곤앤던전 {
 		long MaxHp = 0;
 		for(int i=0; i<N; i++) {
 			tokens = new StringTokenizer(input.readLine());
-			
 			t = Integer.parseInt(tokens.nextToken());
 			a = Integer.parseInt(tokens.nextToken());
 			h = Integer.parseInt(tokens.nextToken());
