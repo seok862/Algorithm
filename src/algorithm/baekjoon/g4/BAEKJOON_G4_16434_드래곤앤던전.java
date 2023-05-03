@@ -46,6 +46,7 @@ public class BAEKJOON_G4_16434_드래곤앤던전 {
                 CurHp = Math.max(CurHp - h, 0);
             }
 		}
+		
 		System.out.println(MaxHp+1);
 	}
 }
