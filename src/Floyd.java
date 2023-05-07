@@ -1,57 +1,60 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.StringReader;
 import java.util.Arrays;
-import java.util.StringTokenizer;
 
 public class Floyd{
-	private static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-	private static int N;
-	private static int[][] graph;
-	private static StringTokenizer tokens;
-	private static int INF = 987_654_321;
+	private static char[] arr = {'a','b','c','d','e'};
 	
 	public static void main(String[] args) throws IOException {
-		input = new BufferedReader(new StringReader(instr));
-		N = Integer.parseInt(input.readLine());
-		graph = new int[N][N];
-		// 비 연결 간선에 대한 INF 초기화
-		for(int r=0; r<N; r++) {
-			tokens = new StringTokenizer(input.readLine());
-			for(int c=0; c<N; c++) {
-				graph[r][c] = Integer.parseInt(tokens.nextToken());
-				if(r!=c && graph[r][c] == 0) {
-					graph[r][c] = INF;
-				}
-			}
-		}
-		
-		// floyd 돌리기 : 경출도
-		for(int v=0; v<N; v++) {
-			for(int s=0; s<N; s++) {
-				if(v==s) continue;
-				for(int e=0; e<N; e++) {
-					if(v==e || s==e) {
-						continue;
-					}
-					// 기존 경로가 v를 통해서 온 경로보다 길다면 업데이트!!
-					if(graph[s][e] > graph[s][v] + graph[v][e]){
-						graph[s][e] = graph[s][v] + graph[v][e];
-					}
-				}
-			}
-		}
-		
-		for(int[] row:graph) {
-			System.out.println(Arrays.toString(row));
-		}
-	
+//		makePermutation(0, new boolean[arr.length], new char[4]);
+//		makeCombination(0, new char[4], 0);
+		powerSetDupPer(0, new boolean[4]);
 	}
 	
-	private static String instr = "4\r\n" + 
-			"0 2 0 15\r\n" + 
-			"0 0 10 4\r\n" + 
-			"3 0 0 0\r\n" + 
-			"0 0 7 0";
+	static void makePermutation(int lv, boolean[] visited, char[] choosed) {
+		if(lv==4) {
+			System.out.println(Arrays.toString(choosed));
+			return;
+		}
+		
+		for(int i=0; i<arr.length; i++) {
+			if(!visited[i]) {
+				visited[i] = true;
+				choosed[lv] = arr[i];
+				makePermutation(lv+1, visited, choosed);
+				visited[i] = false;
+			}
+		}
+	}
+	
+	static void makeCombination(int lv, char[] choosed, int startIdx) {
+		if(lv == 4) {
+			System.out.println(Arrays.toString(choosed));
+			return;
+		}
+		
+		for(int i=startIdx; i<arr.length; i++) {
+			choosed[lv] = arr[i];
+			makeCombination(lv+1, choosed, startIdx);
+		}
+	}
+	
+	static void powerSetDupPer(int lv, boolean[] visited) {
+		if(lv == visited.length) {
+			for(int i=0; i<visited.length; i++) {
+				if(visited[i]) {
+					System.out.print(arr[i]+" ");
+				}
+			}
+			System.out.println();
+			
+			return;
+		}
+		
+		visited[lv] = true;
+		powerSetDupPer(lv+1, visited);
+		visited[lv] = false;
+		powerSetDupPer(lv+1, visited);
+	}
 }
