@@ -7,6 +7,15 @@ import java.util.Arrays;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
+/**
+* @author seok
+* @since 2023.05.09
+* @see https://www.acmicpc.net/problem/1414
+* @performance 	11796kb		88ms
+* @category # 최소신장트리
+* @note
+*/
+
 public class BAEKJOON_G3_1414_불우이웃돕기 {
 
 	static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
@@ -23,12 +32,20 @@ public class BAEKJOON_G3_1414_불우이웃돕기 {
 		N = Integer.parseInt(input.readLine());
 
 		arr = new int[N + 1][N + 1];
+		
+		for(int[] a:arr) {
+			Arrays.fill(a, 100);
+		}
+		
 		visited = new boolean[N + 1];
 		for (int r = 1; r <= N; r++) {
 			String st = input.readLine();
 			for (int c = 1; c <= N; c++) {
-				if (st.charAt(c - 1) != '0') {
-					int n = st.charAt(c - 1) - 96;
+				if (st.charAt(c-1) != '0') {
+					char tmp = st.charAt(c-1);
+					int n = 0;
+					if((int)tmp >= (int)'a' && (int)tmp <= (int)'z') n = (int)tmp - (int)'a' + 1;
+		            else n = (int)tmp - (int)'A' + 27;
 					sum += n;
 					if (r == c)
 						continue;
@@ -36,7 +53,6 @@ public class BAEKJOON_G3_1414_불우이웃돕기 {
 				}
 			}
 		}
-
 		for (int r = 1; r <= N; r++) {
 			for (int c = 1; c <= N; c++) {
 
@@ -48,7 +64,7 @@ public class BAEKJOON_G3_1414_불우이웃돕기 {
 
 			}
 		}
-
+		
 		prim();
 		boolean check = true;
 		
@@ -65,7 +81,7 @@ public class BAEKJOON_G3_1414_불우이웃돕기 {
 
 	public static void prim() {
 
-		pq.add(new Edge(2, 0));
+		pq.add(new Edge(1, 0));
 
 		while (!pq.isEmpty()) {
 			Edge e = pq.poll();
@@ -79,7 +95,7 @@ public class BAEKJOON_G3_1414_불우이웃돕기 {
 			total += weight;
 
 			for (int i = 1; i <= N; i++) {
-				if(arr[edge][i] != 0) {
+				if(arr[edge][i] != 100) {
 					if(!visited[i]) pq.add(new Edge(i, arr[edge][i]));
 				}
 			}
