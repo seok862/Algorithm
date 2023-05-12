@@ -44,8 +44,8 @@ public class BAEKJOON_G3_1414_불우이웃돕기 {
 				if (st.charAt(c-1) != '0') {
 					char tmp = st.charAt(c-1);
 					int n = 0;
-					if((int)tmp >= (int)'a' && (int)tmp <= (int)'z') n = (int)tmp - (int)'a' + 1;
-		            else n = (int)tmp - (int)'A' + 27;
+					if(tmp >= 'a' && tmp <= 'z') n = tmp - 'a' + 1;
+		            else n = tmp - 'A' + 27;
 					sum += n;
 					if (r == c)
 						continue;
