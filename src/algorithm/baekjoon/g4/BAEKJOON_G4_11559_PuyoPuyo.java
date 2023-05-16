@@ -13,7 +13,7 @@ public class BAEKJOON_G4_11559_PuyoPuyo {
 	
 	static int[][] deltas = {{0,1},{1,0},{0,-1},{-1,0},{1,1},{-1,1},{1,-1},{-1,-1}};
 	static char[][] map;
-	
+	static int cnt;
 	public static void main(String[] args) throws IOException {
 		map = new char[12][6];
 		for(int r=0; r<12; r++) {
@@ -23,6 +23,24 @@ public class BAEKJOON_G4_11559_PuyoPuyo {
 			}
 		}
 		
+		change();
+	}
+	
+	public static void change() {
+		boolean check = false;
+		for(int r=11; r>=0; r--) {
+			for(int c=5; c>=0; c--) {
+				if(map[r][c] != '.');
+				cnt = 0;
+				check(r,c);
+			}
+		}
+	}
+	
+	public static void check(int r, int c) {
 		
+		for(int i=0; i<8; i++) {
+			
+		}
 	}
 }
