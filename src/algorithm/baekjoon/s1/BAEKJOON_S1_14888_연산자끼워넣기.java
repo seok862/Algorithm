@@ -34,7 +34,7 @@ public class BAEKJOON_S1_14888_연산자끼워넣기 {
 		tokens = new StringTokenizer(input.readLine());
 		
 		
-		for(int i=0; i<N; i++) {
+		for(int i=0; i<N; i++) { 
 			number[i] = Integer.parseInt(tokens.nextToken());
 		}
 		
